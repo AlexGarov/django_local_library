@@ -19,10 +19,13 @@ from django.urls import include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-
+from catalog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('catalog.urls')),
-    path('index/', RedirectView.as_view(url='/catalog/index/', permanent=True)),
+    # path('', include('catalog.urls')),
+    # path('index/', RedirectView.as_view(url='/catalog/index/', permanent=True)),
+    path('catalog/', views.index, name='index'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
 ]
-#urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
